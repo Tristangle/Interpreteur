@@ -1,0 +1,36 @@
+digraph {
+	node [shape=circle]
+	"0a9ce053-4f52-4600-815a-1e01fd739321" [label=start]
+	"738ab030-52be-4c8d-8825-d55298e75570" [label=bloc]
+	"b0f6dac9-3432-4d91-985e-454f4db833ef" [label=bloc]
+	"a208af67-a72d-4900-99e3-844a6a0c86c4" [label=bloc]
+	"1bdbb3f4-9d8f-41dc-95bb-e58142c940f4" [label=print]
+	"efa0ff05-b953-42f1-b3a6-dee7ae181200" [label="+"]
+	"5c224b74-5cf1-4f71-b360-bd0e23a81ca0" [label=1]
+	"efa0ff05-b953-42f1-b3a6-dee7ae181200" -> "5c224b74-5cf1-4f71-b360-bd0e23a81ca0"
+	"10fc17ad-ac80-45fb-9963-97a70df77791" [label=2]
+	"efa0ff05-b953-42f1-b3a6-dee7ae181200" -> "10fc17ad-ac80-45fb-9963-97a70df77791"
+	"1bdbb3f4-9d8f-41dc-95bb-e58142c940f4" -> "efa0ff05-b953-42f1-b3a6-dee7ae181200"
+	"a208af67-a72d-4900-99e3-844a6a0c86c4" -> "1bdbb3f4-9d8f-41dc-95bb-e58142c940f4"
+	"0efee43e-b44e-4a91-9732-abef69517b59" [label=empty]
+	"a208af67-a72d-4900-99e3-844a6a0c86c4" -> "0efee43e-b44e-4a91-9732-abef69517b59"
+	"b0f6dac9-3432-4d91-985e-454f4db833ef" -> "a208af67-a72d-4900-99e3-844a6a0c86c4"
+	"7bb2b979-3f6a-41ae-872b-bab32fab41b2" [label=assign]
+	"6a2a61ce-d9b1-4462-8695-b4ef90db7c4d" [label=x]
+	"7bb2b979-3f6a-41ae-872b-bab32fab41b2" -> "6a2a61ce-d9b1-4462-8695-b4ef90db7c4d"
+	"0e7e9ea0-0c76-4238-827c-d7cf5e5004d4" [label=4]
+	"7bb2b979-3f6a-41ae-872b-bab32fab41b2" -> "0e7e9ea0-0c76-4238-827c-d7cf5e5004d4"
+	"b0f6dac9-3432-4d91-985e-454f4db833ef" -> "7bb2b979-3f6a-41ae-872b-bab32fab41b2"
+	"738ab030-52be-4c8d-8825-d55298e75570" -> "b0f6dac9-3432-4d91-985e-454f4db833ef"
+	"6f0c256e-bd2a-47a3-bbe4-d0a03633243d" [label=assign]
+	"ace99a72-e401-464d-a4a1-b910fead0170" [label=x]
+	"6f0c256e-bd2a-47a3-bbe4-d0a03633243d" -> "ace99a72-e401-464d-a4a1-b910fead0170"
+	"c044287e-a692-47ef-80a6-c630a243264e" [label="+"]
+	"751ffcd3-f5b9-4f79-b68b-2d45f0f7f20b" [label=x]
+	"c044287e-a692-47ef-80a6-c630a243264e" -> "751ffcd3-f5b9-4f79-b68b-2d45f0f7f20b"
+	"f82e3496-bcc6-4b24-bc58-d64b55766ab8" [label=1]
+	"c044287e-a692-47ef-80a6-c630a243264e" -> "f82e3496-bcc6-4b24-bc58-d64b55766ab8"
+	"6f0c256e-bd2a-47a3-bbe4-d0a03633243d" -> "c044287e-a692-47ef-80a6-c630a243264e"
+	"738ab030-52be-4c8d-8825-d55298e75570" -> "6f0c256e-bd2a-47a3-bbe4-d0a03633243d"
+	"0a9ce053-4f52-4600-815a-1e01fd739321" -> "738ab030-52be-4c8d-8825-d55298e75570"
+}
