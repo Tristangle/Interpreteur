@@ -80,14 +80,15 @@ names= { }
 
 def evalInst(t):
     print('evalInst', t)
+    if t == 'empty' :return
     if type(t)!= tuple :
         print('warning')
         return
-    if t[0]==' print' :
+    if t[0]=='print' :
         print('CALC>', evalExpr(t[1]))
-    if t[0]==' assign' :
+    if t[0]=='assign' :
         names[t[1]]= evalExpr(t[2])
-    if t[0]==' bloc' :
+    if t[0]=='bloc' :
         evalInst(t[1])
         evalInst(t[2])
 
@@ -96,15 +97,10 @@ def evalExpr(t):
     print('eval de ', t)
     if type(t) is int: return t
     if type(t) is tuple:
-        if t[0] is '+': return eval(t[1]) + eval(t[2])
-        if t[0] is '-': return eval(t[1]) - eval(t[2])
-        if t[0] is '*': return eval(t[1]) * eval(t[2])
-        if t[0] is '/': return eval(t[1]) // eval(t[2])
-
-
-print(tree, ' resultat =', eval(tree))
-print()
-
+        if t[0] == '+': return evalExpr(t[1]) + evalExpr(t[2])
+        if t[0] == '-': return evalExpr(t[1]) - evalExpr(t[2])
+        if t[0] == '*': return evalExpr(t[1]) * evalExpr(t[2])
+        if t[0] == '/': return evalExpr(t[1]) // evalExpr(t[2])
 
 def p_line(t):
     '''linst : linst inst 
