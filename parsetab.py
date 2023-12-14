@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AND COLON DIVIDE EQUAL EQUALS HIGHER IF LOWER LPAREN MINUS NAME NUMBER OR PLUS PRINT RPAREN THEN TIMES start : linstlinst : linst inst \n            | inst inst : NAME EQUAL expression COLONinst : PRINT LPAREN expression RPAREN COLONexpression : expression PLUS expression\n                  | expression MINUS expression\n                  | expression TIMES expression\n                  | expression OR expression\n                  | expression AND expression\n                  | expression EQUALS expression\n                  | expression LOWER expression\n                  | expression HIGHER expression\n                  | expression DIVIDE expressionexpression : LPAREN expression RPARENexpression : NUMBERexpression : NAME'
+_lr_signature = 'AND COLON DIVIDE EQUAL EQUALS HIGHER IF LACCOL LOWER LPAREN MINUS NAME NUMBER OR PLUS PRINT RACCOL RPAREN THEN TIMES WHILE start : linstlinst : linst inst \n            | inst inst : IF LPAREN expression RPAREN LACCOL linst RACCOLinst : WHILE LPAREN expression RPAREN LACCOL linst RACCOLinst : NAME EQUAL expression COLONinst : PRINT LPAREN expression RPAREN COLONexpression : expression PLUS expression\n                  | expression MINUS expression\n                  | expression TIMES expression\n                  | expression OR expression\n                  | expression AND expression\n                  | expression EQUALS expression\n                  | expression LOWER expression\n                  | expression HIGHER expression\n                  | expression DIVIDE expressionexpression : LPAREN expression RPARENexpression : NUMBERexpression : NAME'
     
-_lr_action_items = {'NAME':([0,2,3,6,7,8,11,14,15,16,17,18,19,20,21,22,23,36,],[4,4,-3,-2,9,9,9,-4,9,9,9,9,9,9,9,9,9,-5,]),'PRINT':([0,2,3,6,14,36,],[5,5,-3,-2,-4,-5,]),'$end':([1,2,3,6,14,36,],[0,-1,-3,-2,-4,-5,]),'EQUAL':([4,],[7,]),'LPAREN':([5,7,8,11,15,16,17,18,19,20,21,22,23,],[8,11,11,11,11,11,11,11,11,11,11,11,11,]),'NUMBER':([7,8,11,15,16,17,18,19,20,21,22,23,],[12,12,12,12,12,12,12,12,12,12,12,12,]),'COLON':([9,10,12,25,26,27,28,29,30,31,32,33,34,35,],[-17,14,-16,36,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,]),'PLUS':([9,10,12,13,24,26,27,28,29,30,31,32,33,34,35,],[-17,15,-16,15,15,15,15,15,15,15,15,15,15,15,-15,]),'MINUS':([9,10,12,13,24,26,27,28,29,30,31,32,33,34,35,],[-17,16,-16,16,16,16,16,16,16,16,16,16,16,16,-15,]),'TIMES':([9,10,12,13,24,26,27,28,29,30,31,32,33,34,35,],[-17,17,-16,17,17,17,17,17,17,17,17,17,17,17,-15,]),'OR':([9,10,12,13,24,26,27,28,29,30,31,32,33,34,35,],[-17,18,-16,18,18,18,18,18,18,18,18,18,18,18,-15,]),'AND':([9,10,12,13,24,26,27,28,29,30,31,32,33,34,35,],[-17,19,-16,19,19,19,19,19,19,19,19,19,19,19,-15,]),'EQUALS':([9,10,12,13,24,26,27,28,29,30,31,32,33,34,35,],[-17,20,-16,20,20,20,20,20,20,20,20,20,20,20,-15,]),'LOWER':([9,10,12,13,24,26,27,28,29,30,31,32,33,34,35,],[-17,21,-16,21,21,21,21,21,21,21,21,21,21,21,-15,]),'HIGHER':([9,10,12,13,24,26,27,28,29,30,31,32,33,34,35,],[-17,22,-16,22,22,22,22,22,22,22,22,22,22,22,-15,]),'DIVIDE':([9,10,12,13,24,26,27,28,29,30,31,32,33,34,35,],[-17,23,-16,23,23,23,23,23,23,23,23,23,23,23,-15,]),'RPAREN':([9,12,13,24,26,27,28,29,30,31,32,33,34,35,],[-17,-16,25,35,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,]),}
+_lr_action_items = {'IF':([0,2,3,8,32,35,45,46,47,48,49,50,],[4,4,-3,-2,-6,4,4,-7,4,4,-4,-5,]),'WHILE':([0,2,3,8,32,35,45,46,47,48,49,50,],[5,5,-3,-2,-6,5,5,-7,5,5,-4,-5,]),'NAME':([0,2,3,8,9,10,11,12,13,22,23,24,25,26,27,28,29,30,32,35,45,46,47,48,49,50,],[6,6,-3,-2,16,16,16,16,16,16,16,16,16,16,16,16,16,16,-6,6,6,-7,6,6,-4,-5,]),'PRINT':([0,2,3,8,32,35,45,46,47,48,49,50,],[7,7,-3,-2,-6,7,7,-7,7,7,-4,-5,]),'$end':([1,2,3,8,32,46,49,50,],[0,-1,-3,-2,-6,-7,-4,-5,]),'RACCOL':([3,8,32,46,47,48,49,50,],[-3,-2,-6,-7,49,50,-4,-5,]),'LPAREN':([4,5,7,9,10,11,12,13,22,23,24,25,26,27,28,29,30,],[9,10,12,13,13,13,13,13,13,13,13,13,13,13,13,13,13,]),'EQUAL':([6,],[11,]),'NUMBER':([9,10,11,12,13,22,23,24,25,26,27,28,29,30,],[15,15,15,15,15,15,15,15,15,15,15,15,15,15,]),'RPAREN':([14,15,16,17,19,20,34,36,37,38,39,40,41,42,43,44,],[21,-18,-19,31,33,34,-17,-8,-9,-10,-11,-12,-13,-14,-15,-16,]),'PLUS':([14,15,16,17,18,19,20,34,36,37,38,39,40,41,42,43,44,],[22,-18,-19,22,22,22,22,-17,22,22,22,22,22,22,22,22,22,]),'MINUS':([14,15,16,17,18,19,20,34,36,37,38,39,40,41,42,43,44,],[23,-18,-19,23,23,23,23,-17,23,23,23,23,23,23,23,23,23,]),'TIMES':([14,15,16,17,18,19,20,34,36,37,38,39,40,41,42,43,44,],[24,-18,-19,24,24,24,24,-17,24,24,24,24,24,24,24,24,24,]),'OR':([14,15,16,17,18,19,20,34,36,37,38,39,40,41,42,43,44,],[25,-18,-19,25,25,25,25,-17,25,25,25,25,25,25,25,25,25,]),'AND':([14,15,16,17,18,19,20,34,36,37,38,39,40,41,42,43,44,],[26,-18,-19,26,26,26,26,-17,26,26,26,26,26,26,26,26,26,]),'EQUALS':([14,15,16,17,18,19,20,34,36,37,38,39,40,41,42,43,44,],[27,-18,-19,27,27,27,27,-17,27,27,27,27,27,27,27,27,27,]),'LOWER':([14,15,16,17,18,19,20,34,36,37,38,39,40,41,42,43,44,],[28,-18,-19,28,28,28,28,-17,28,28,28,28,28,28,28,28,28,]),'HIGHER':([14,15,16,17,18,19,20,34,36,37,38,39,40,41,42,43,44,],[29,-18,-19,29,29,29,29,-17,29,29,29,29,29,29,29,29,29,]),'DIVIDE':([14,15,16,17,18,19,20,34,36,37,38,39,40,41,42,43,44,],[30,-18,-19,30,30,30,30,-17,30,30,30,30,30,30,30,30,30,]),'COLON':([15,16,18,33,34,36,37,38,39,40,41,42,43,44,],[-18,-19,32,46,-17,-8,-9,-10,-11,-12,-13,-14,-15,-16,]),'LACCOL':([21,31,],[35,45,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'start':([0,],[1,]),'linst':([0,],[2,]),'inst':([0,2,],[3,6,]),'expression':([7,8,11,15,16,17,18,19,20,21,22,23,],[10,13,24,26,27,28,29,30,31,32,33,34,]),}
+_lr_goto_items = {'start':([0,],[1,]),'linst':([0,35,45,],[2,47,48,]),'inst':([0,2,35,45,47,48,],[3,8,3,3,8,8,]),'expression':([9,10,11,12,13,22,23,24,25,26,27,28,29,30,],[14,17,18,19,20,36,37,38,39,40,41,42,43,44,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,21 +27,23 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> start","S'",1,None,None,None),
-  ('start -> linst','start',1,'p_start','main.py',70),
-  ('linst -> linst inst','linst',2,'p_line','main.py',101),
-  ('linst -> inst','linst',1,'p_line','main.py',102),
-  ('inst -> NAME EQUAL expression COLON','inst',4,'p_statement_assign','main.py',110),
-  ('inst -> PRINT LPAREN expression RPAREN COLON','inst',5,'p_statement_print','main.py',115),
-  ('expression -> expression PLUS expression','expression',3,'p_expression_binop','main.py',120),
-  ('expression -> expression MINUS expression','expression',3,'p_expression_binop','main.py',121),
-  ('expression -> expression TIMES expression','expression',3,'p_expression_binop','main.py',122),
-  ('expression -> expression OR expression','expression',3,'p_expression_binop','main.py',123),
-  ('expression -> expression AND expression','expression',3,'p_expression_binop','main.py',124),
-  ('expression -> expression EQUALS expression','expression',3,'p_expression_binop','main.py',125),
-  ('expression -> expression LOWER expression','expression',3,'p_expression_binop','main.py',126),
-  ('expression -> expression HIGHER expression','expression',3,'p_expression_binop','main.py',127),
-  ('expression -> expression DIVIDE expression','expression',3,'p_expression_binop','main.py',128),
-  ('expression -> LPAREN expression RPAREN','expression',3,'p_expression_group','main.py',133),
-  ('expression -> NUMBER','expression',1,'p_expression_number','main.py',138),
-  ('expression -> NAME','expression',1,'p_expression_name','main.py',144),
+  ('start -> linst','start',1,'p_start','main.py',74),
+  ('linst -> linst inst','linst',2,'p_line','main.py',115),
+  ('linst -> inst','linst',1,'p_line','main.py',116),
+  ('inst -> IF LPAREN expression RPAREN LACCOL linst RACCOL','inst',7,'p_if','main.py',123),
+  ('inst -> WHILE LPAREN expression RPAREN LACCOL linst RACCOL','inst',7,'p_while','main.py',127),
+  ('inst -> NAME EQUAL expression COLON','inst',4,'p_statement_assign','main.py',130),
+  ('inst -> PRINT LPAREN expression RPAREN COLON','inst',5,'p_statement_print','main.py',135),
+  ('expression -> expression PLUS expression','expression',3,'p_expression_binop','main.py',140),
+  ('expression -> expression MINUS expression','expression',3,'p_expression_binop','main.py',141),
+  ('expression -> expression TIMES expression','expression',3,'p_expression_binop','main.py',142),
+  ('expression -> expression OR expression','expression',3,'p_expression_binop','main.py',143),
+  ('expression -> expression AND expression','expression',3,'p_expression_binop','main.py',144),
+  ('expression -> expression EQUALS expression','expression',3,'p_expression_binop','main.py',145),
+  ('expression -> expression LOWER expression','expression',3,'p_expression_binop','main.py',146),
+  ('expression -> expression HIGHER expression','expression',3,'p_expression_binop','main.py',147),
+  ('expression -> expression DIVIDE expression','expression',3,'p_expression_binop','main.py',148),
+  ('expression -> LPAREN expression RPAREN','expression',3,'p_expression_group','main.py',153),
+  ('expression -> NUMBER','expression',1,'p_expression_number','main.py',158),
+  ('expression -> NAME','expression',1,'p_expression_name','main.py',164),
 ]

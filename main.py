@@ -1,6 +1,7 @@
 from test import printTreeGraph# à copier coller dans le script sinon
 reserved = {
     'if' : 'IF',
+    'while' : 'WHILE',
     'then' : 'THEN',
     'print' : 'PRINT'
 }
@@ -8,7 +9,7 @@ reserved = {
 tokens = [
              'NAME' ,'NUMBER',
              'PLUS' ,'MINUS' ,'TIMES' ,'DIVIDE',
-             'LPAREN' ,'RPAREN', 'COLON', 'AND', 'OR', 'EQUAL', 'EQUALS', 'LOWER' ,'HIGHER' ]+list(reserved.values())
+             'LPAREN' ,'RPAREN', 'COLON', 'AND', 'OR', 'EQUAL', 'EQUALS', 'LOWER' ,'HIGHER', 'LACCOL', 'RACCOL' ]+list(reserved.values())
 
 # Tokens
 
@@ -31,6 +32,9 @@ t_OR  = r'\|'
 t_EQUALS  = r'=='
 t_LOWER  = r'\<'
 t_HIGHER  = r'\>'
+t_LACCOL  = r'\{'
+t_RACCOL  = r'\}'
+
 
 
 def t_NUMBER(t):
@@ -91,16 +95,21 @@ def evalInst(t):
     if t[0]=='bloc' :
         evalInst(t[1])
         evalInst(t[2])
-
+    if t[0]== 'IF' :
+        if evalExpr(t[1])== True:
+            evalInst(t[2])
+        # WHILE evalExpr(t[1): evalInst(t[2])
 
 def evalExpr(t):
     print('eval de ', t)
     if type(t) is int: return t
+    if type(t) is str: return names[t]
     if type(t) is tuple:
         if t[0] == '+': return evalExpr(t[1]) + evalExpr(t[2])
         if t[0] == '-': return evalExpr(t[1]) - evalExpr(t[2])
         if t[0] == '*': return evalExpr(t[1]) * evalExpr(t[2])
         if t[0] == '/': return evalExpr(t[1]) // evalExpr(t[2])
+        if t[0] == '==': return evalExpr(t[1]) == evalExpr(t[2])
 
 def p_line(t):
     '''linst : linst inst 
@@ -110,6 +119,12 @@ def p_line(t):
     else:
         t[0] = ('bloc',t [1], 'empty')
 
+def p_if(t):
+    '''inst : IF LPAREN expression RPAREN LACCOL linst RACCOL'''
+    t[0] = ('IF', t[3], t[6]);
+
+def p_while(t):
+    '''inst : WHILE LPAREN expression RPAREN LACCOL linst RACCOL'''
 
 def p_statement_assign(t):
     'inst : NAME EQUAL expression COLON'
@@ -160,7 +175,7 @@ import ply.yacc as yacc
 parser = yacc.yacc()
 
 # s='1+2;x=4 if ;x=x+1;'
-s= ' print(1+2);x=4;x=x+1;'
+s= ' print(1+2);x=4;x=x+1; y = 5; if(x==y){ print(1); }'
 
 # with open("1.in") as file: # Use file to refer to the file object
 
