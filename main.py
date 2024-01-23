@@ -2,7 +2,7 @@ from test import printTreeGraph# à copier coller dans le script sinon
 reserved = {
     'if' : 'IF',
     'while' : 'WHILE',
-    'then' : 'THEN',
+    'for' : 'FOR',
     'print' : 'PRINT'
 }
 
@@ -100,6 +100,7 @@ def evalInst(t):
             evalInst(t[2])
         # WHILE evalExpr(t[1): evalInst(t[2])
 
+
 def evalExpr(t):
     print('eval de ', t)
     if type(t) is int: return t
@@ -125,6 +126,11 @@ def p_if(t):
 
 def p_while(t):
     '''inst : WHILE LPAREN expression RPAREN LACCOL linst RACCOL'''
+    t[0] = ('WHILE', t[3], t[6]);
+
+def p_for(t):
+    '''inst : FOR LPAREN inst expression COLON inst RPAREN LACCOL linst RACCOL'''
+    t[0] = ('FOR', t[3],t[4], t[6], t[9]);
 
 def p_statement_assign(t):
     'inst : NAME EQUAL expression COLON'
@@ -175,7 +181,7 @@ import ply.yacc as yacc
 parser = yacc.yacc()
 
 # s='1+2;x=4 if ;x=x+1;'
-s= ' print(1+2);x=4;x=x+1; y = 5; if(x==y){ print(1); }'
+s= ' for(i = 0; i < 2; i = i + 1;){ print(i);}'
 
 # with open("1.in") as file: # Use file to refer to the file object
 
