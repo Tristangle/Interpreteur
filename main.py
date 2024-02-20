@@ -3,13 +3,14 @@ reserved = {
     'if' : 'IF',
     'while' : 'WHILE',
     'for' : 'FOR',
-    'print' : 'PRINT'
+    'print' : 'PRINT',
+    'def' : 'DEF'
 }
 
 tokens = [
              'NAME' ,'NUMBER',
              'PLUS' ,'MINUS' ,'TIMES' ,'DIVIDE',
-             'LPAREN' ,'RPAREN', 'COLON', 'AND', 'OR', 'EQUAL', 'EQUALS', 'LOWER' ,'HIGHER', 'LACCOL', 'RACCOL' ]+list(reserved.values())
+             'LPAREN' ,'RPAREN', 'COLON', 'AND', 'OR', 'EQUAL', 'EQUALS', 'LOWER' ,'HIGHER', 'LACCOL', 'RACCOL', 'COMMA', 'DPERIOD']+list(reserved.values())
 
 # Tokens
 
@@ -34,6 +35,8 @@ t_LOWER  = r'\<'
 t_HIGHER  = r'\>'
 t_LACCOL  = r'\{'
 t_RACCOL  = r'\}'
+t_COMMA = r'\,'
+t_DPERIOD = r'\:'
 
 
 
@@ -98,7 +101,13 @@ def evalInst(t):
     if t[0]== 'IF' :
         if evalExpr(t[1])== True:
             evalInst(t[2])
-        # WHILE evalExpr(t[1): evalInst(t[2])
+    if t[0] == 'WHILE':
+        if evalExpr(t[1]) == True:
+            evalInst(t[1])
+    if t[0] == 'FOR':
+        if evalExpr(t[1]) == True:
+            evalInst(t[2])
+
 
 
 def evalExpr(t):
@@ -122,15 +131,29 @@ def p_line(t):
 
 def p_if(t):
     '''inst : IF LPAREN expression RPAREN LACCOL linst RACCOL'''
-    t[0] = ('IF', t[3], t[6]);
+    t[0] = ('IF', t[3], t[6])
 
 def p_while(t):
     '''inst : WHILE LPAREN expression RPAREN LACCOL linst RACCOL'''
-    t[0] = ('WHILE', t[3], t[6]);
+    t[0] = ('WHILE', t[3], t[6])
 
 def p_for(t):
     '''inst : FOR LPAREN inst expression COLON inst RPAREN LACCOL linst RACCOL'''
-    t[0] = ('FOR', t[3],t[4], t[6], t[9]);
+    t[0] = ('FOR', t[3],t[4], t[6], t[9])
+def p_params(t):
+    '''params :
+              | NAME
+              | params COMMA NAME'''
+    if len(t) == 2:
+        t[0] = [t[1]]
+    elif len(t) == 4:
+        t[0] = t[1] + [t[3]]
+    else:
+        t[0] = []
+
+def p_void(t):
+    '''inst : DEF NAME LPAREN params RPAREN DPERIOD linst COLON'''
+    t[0] = ('DEF', t[2], t[4], t[7])
 
 def p_statement_assign(t):
     'inst : NAME EQUAL expression COLON'
@@ -181,7 +204,8 @@ import ply.yacc as yacc
 parser = yacc.yacc()
 
 # s='1+2;x=4 if ;x=x+1;'
-s= ' for(i = 0; i < 2; i = i + 1;){ print(i);}'
+s = 'def printTest( ) : print(1+1); printest();'
+
 
 # with open("1.in") as file: # Use file to refer to the file object
 

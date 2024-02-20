@@ -1,0 +1,9 @@
+Le projet comporte  : S
+1. Votre interpréteur devra gérer les noms de variables à plusieurs caractères.
+2. Gérer les instructions suivantes :
+a. affectation
+b. affichage d’expressions numériques (pouvant contenir des variables numériques)
+c. instructions conditionnelles : implémenter le si-alors-sinon/si-alors
+d. structures itératives : implémenter le while et le for
+e. Affichage de l’arbre de syntaxe (sur la console ou avec graphViz)
+1. Fonctions void : 2 pts
